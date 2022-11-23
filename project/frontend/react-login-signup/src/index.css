@@ -71,3 +71,15 @@ html,
 .forgot-password a {
   color: #167bff;
 }
+
+.not-registered,
+.not-registered a {
+  text-align: right;
+  font-size: 13px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+}
+.not-registered a {
+  color: #167bff;
+}
