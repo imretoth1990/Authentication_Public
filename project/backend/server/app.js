@@ -1,5 +1,6 @@
 // Import all dependencies & middleware here
 import express from "express";
+const cors = require("cors");
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
@@ -12,6 +13,14 @@ import { userController, buttonController } from "./controller";
 
 // Init an Express App.
 const app = express();
+
+// Pass cors
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 
 // Call variables from .env file
 const port = process.env.PORT;
