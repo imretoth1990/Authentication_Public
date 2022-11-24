@@ -5,6 +5,10 @@ import sha256 from "sha256";
 const userController = express.Router();
 
 /**
+ * USERS
+ */
+
+/**
  * GET/
  * retrieve and display all Users in the User Model
  */
@@ -16,11 +20,6 @@ userController.get("/", (req, res) => {
     });
   });
 });
-
-/**
- * POST/
- * Add a new User to your database
- */
 
 userController.post("/api/signup", (req, res) => {
   const { username, email, password } = req.body;

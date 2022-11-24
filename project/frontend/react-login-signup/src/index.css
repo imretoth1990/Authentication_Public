@@ -103,3 +103,7 @@ html,
   display: flex;
   justify-content: space-between;
 }
+
+.flex-box a {
+  color: #fff;
+}

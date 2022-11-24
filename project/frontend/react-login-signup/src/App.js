@@ -2,10 +2,11 @@ import React from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Login from "./components/login.component";
-import SignUp from "./components/signup.component";
-import Reset from "./components/reset.component";
-import Buttons from "./components/buttons.component";
+import Login from "./components/login/login.component";
+import SignUp from "./components/signup/signup.component";
+import Reset from "./components/reset/reset.component";
+import Buttons from "./components/buttons/buttons.component";
+import GetRequest from "./components/request/request.component";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
               <Route path="/sign-up" element={<SignUp />} />
               <Route path="/reset" element={<Reset />} />
               <Route path="/buttons" element={<Buttons />} />
+              <Route path="/request" element={<GetRequest />} />
             </Routes>
           </div>
         </div>
