@@ -16,7 +16,8 @@ function GetRequest() {
       //   .then((response) => console.log(response))
       .then((actualData) => {
         console.dir(actualData);
-        setData(actualData.string);
+        // setData(actualData.string);
+        setData("Hello");
       });
   }, []);
 
