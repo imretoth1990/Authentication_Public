@@ -83,3 +83,20 @@ html,
 .not-registered a {
   color: #167bff;
 }
+
+.default-text,
+.default-text a {
+  text-align: center;
+  font-size: 13px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+}
+.default-text a {
+  color: #167bff;
+}
+
+.flex-box {
+  display: flex;
+  justify-content: space-between;
+}

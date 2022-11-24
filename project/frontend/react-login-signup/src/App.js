@@ -4,6 +4,9 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Login from "./components/login.component";
 import SignUp from "./components/signup.component";
+import Reset from "./components/reset.component";
+import Buttons from "./components/buttons.component";
+
 function App() {
   return (
     <Router>
@@ -25,6 +28,11 @@ function App() {
                     Sign up
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to={"/buttons"}>
+                    Home
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -35,6 +43,8 @@ function App() {
               <Route exact path="/" element={<Login />} />
               <Route path="/sign-in" element={<Login />} />
               <Route path="/sign-up" element={<SignUp />} />
+              <Route path="/reset" element={<Reset />} />
+              <Route path="/buttons" element={<Buttons />} />
             </Routes>
           </div>
         </div>

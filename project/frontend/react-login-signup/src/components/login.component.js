@@ -22,11 +22,11 @@ export default class Login extends Component {
         </div> */}
         <div className="d-grid">
           <button type="submit" className="btn btn-primary">
-            Submit
+            Login
           </button>
         </div>
         <p className="forgot-password text-right">
-          Forgot <a href="#">password?</a>
+          Forgot <a href="/reset">password?</a>
         </p>
         <p className="not-registered text-right">
           If your are not registered, please <a href="/sign-up">sign up!</a>
