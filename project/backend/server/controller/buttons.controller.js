@@ -13,21 +13,7 @@ const buttonController = express.Router();
  */
 
 buttonController.get("/api/private", (req, res) => {
-  // Button.find({}, (err, result) => {
-  //   res.status(200).json({
-  //     data: result,
-  //   });
-  // });
-
-  // Button.findOne({ string: "private" }, (err, result) => {
-  //   res.header("Access-Control-Allow-Origin", "*");
-  //   res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  //   res.send("hi");
-  // });
-
   Button.findOne({ string: "private" }, (err, result) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    // res.header("Access-Control-Allow-Headers", "X-Requested-With");
     res.status(200).json({
       data: result,
     });

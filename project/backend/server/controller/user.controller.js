@@ -31,12 +31,20 @@ userController.post("/api/signup", (req, res) => {
   const newUser = new User(userData);
   newUser
     .save()
-    .then((data) => {
-      res.status(200).send(data);
+    .then(() => {
+      res.status(200).send("Registration is successful!");
     })
     .catch((err) => {
-      res.status(400).send("unable to save to database");
+      res.status(400).send("Unable to save to database!");
     });
 });
+
+// api/confirm
+
+// api/login
+
+// api/logout
+
+// api/reset
 
 export default userController;

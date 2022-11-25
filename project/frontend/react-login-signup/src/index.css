@@ -107,3 +107,9 @@ html,
 .flex-box a {
   color: #fff;
 }
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

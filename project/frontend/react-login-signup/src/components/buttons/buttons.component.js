@@ -1,29 +1,32 @@
-import React, { Component /* useState */ } from "react";
-// import getButtonData from "./buttons.functions";
+import { Link } from "react-router-dom";
+import pubi from "../../images/pubi.png";
 
-export default class Buttons extends Component {
-  // const [message, setMessage] = useState('');
-
-  render() {
-    return (
-      <form>
-        <h3>Home Page</h3>
-        <br></br>
-        <br></br>
-        <div className="mb-3 flex-box">
-          <button type="submit" className="btn btn-primary" /* onClick={(e) => getButtonData(e, "private")} */>
-            <a href="/request">Private</a>
+export default function Buttons({ setButtonClicked }) {
+  return (
+    <form>
+      <h3>Home Page</h3>
+      <div className="image-container">
+        <img src={pubi} alt="funny" height={180} />
+      </div>
+      <br></br>
+      <br></br>
+      <div className="mb-3 flex-box">
+        <Link to="/request">
+          <button type="submit" className="btn btn-primary" onClick={(e) => setButtonClicked(e.target.textContent.toLowerCase())}>
+            Private
           </button>
+        </Link>
 
-          <br></br>
-          <button type="submit" className="btn btn-primary" /* onClick={(e) => getButtonData(e, "public")} */>
+        <br></br>
+        <Link to="/request">
+          <button type="submit" className="btn btn-primary" onClick={(e) => setButtonClicked(e.target.textContent.toLowerCase())}>
             Public
           </button>
-        </div>
-        <p className="default-text">
-          Use this link in order to <a href="/">log out.</a>
-        </p>
-      </form>
-    );
-  }
+        </Link>
+      </div>
+      <p className="default-text">
+        Use this link in order to <a href="/">log out.</a>
+      </p>
+    </form>
+  );
 }
