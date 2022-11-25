@@ -75,6 +75,21 @@ html,
   color: #167bff;
 }
 
+.input-green {
+  text-align: right;
+  font-size: 13px;
+  padding-top: 10px;
+  color: green;
+  margin: 0;
+}
+.input-red {
+  text-align: right;
+  font-size: 13px;
+  padding-top: 10px;
+  color: red;
+  margin: 0;
+}
+
 .not-registered,
 .not-registered a {
   text-align: right;
