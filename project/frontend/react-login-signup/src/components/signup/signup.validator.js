@@ -28,3 +28,12 @@ export function findEmail(inputValue, userData, setEmail) {
     setEmail("notFound");
   }
 }
+
+export function matchPasswords(inputValue, password, setMatchingPassword) {
+  console.log(inputValue);
+  if (inputValue === password) {
+    setMatchingPassword("match");
+  } else {
+    setMatchingPassword("notMatch");
+  }
+}
