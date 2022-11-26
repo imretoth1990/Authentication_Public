@@ -1,8 +1,13 @@
 import express from "express";
 import { User } from "../database/models";
+// const Joi = require("joi");
+
 import sha256 from "sha256";
 
 const userController = express.Router();
+
+const { validateSignup } = require("../validator/signup.validator");
+// import validateSignup from "../validator/signup.validator";
 
 /**
  * USERS
@@ -22,21 +27,31 @@ userController.get("/", (req, res) => {
 });
 
 userController.post("/api/signup", (req, res) => {
-  const { username, email, password } = req.body;
-  const userData = {
-    username,
-    email,
-    hashedPassword: sha256(password),
-  };
-  const newUser = new User(userData);
-  newUser
-    .save()
-    .then(() => {
-      res.status(200).send("Registration is successful!");
-    })
-    .catch((err) => {
-      res.status(400).send("Unable to save to database!");
-    });
+  const { username, email, password /* confirmPassword */ } = req.body;
+  // validate req.body
+  const { error, value } = validateSignup(req.body);
+
+  if (error) {
+    console.log(error);
+    return res.send(error.details);
+  } else {
+    const userData = {
+      username,
+      email,
+      hashedPassword: sha256(password),
+      // hashedPassword: sha256(confirmPassword),
+    };
+    // save req.body to database
+    const newUser = new User(userData);
+    newUser
+      .save()
+      .then(() => {
+        res.status(200).send("Registration is successful!");
+      })
+      .catch((err) => {
+        res.status(400).send("Unable to save to database!");
+      });
+  }
 });
 
 // api/confirm
