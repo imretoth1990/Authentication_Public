@@ -14,3 +14,11 @@ export function getAllUsers(setData) {
     .then((actualData) => setData(actualData.data))
     .catch((err) => console.error(err));
 }
+
+// export async function sendUserData() {
+// const requestOptions = {
+//   method: 'POST',
+//   headers: 'Content-Type': 'application/json',
+//   body: JSON.stringify()
+// }
+// }

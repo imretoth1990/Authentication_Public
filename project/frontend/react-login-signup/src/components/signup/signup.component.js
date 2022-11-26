@@ -1,13 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { findEmail, findUsername, matchPasswords } from "./signup.validator";
+import { findEmails, findUsernames, matchPasswords } from "./signup.validator";
 import { getAllUsers } from "../../client/buttons.client";
 
 export default function SignUp() {
   const [data, setData] = useState([]);
-  const [username, setUsername] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [findUsername, setFindUsername] = useState(null);
+  const [findEmail, setFindEmail] = useState(null);
+
   const [matchingPassword, setMatchingPassword] = useState(null);
+
+  const [username, setUsername] = useState(null);
+  // const [email, setEmail] = useState(nul);
+  const [password, setPassword] = useState(null);
+  // const [confirmPassword, setConfirmPassword] = useState(null);
+
+  /**
+   * Request allowed if
+   * username: "notFound"
+   * email: "notFound"
+   * matchingPassword: "match"
+   *  */
 
   useEffect(() => {
     getAllUsers(setData);
@@ -16,19 +28,27 @@ export default function SignUp() {
   function getInputValue(e) {
     const inputName = e.target.name;
     const inputValue = e.target.value;
-    console.log(inputValue);
+    // console.log(inputValue);
 
     if (inputName === "username") {
-      findUsername(inputValue, data, setUsername);
+      findUsernames(inputValue, data, setFindUsername);
+      if (findUsername === "notFound") {
+        setUsername(inputValue);
+        console.log("setUsername: " + username);
+      } else if (findUsername === "found") {
+        setUsername("");
+      }
     } else if (inputName === "email") {
-      findEmail(inputValue, data, setEmail);
+      findEmails(inputValue, data, setFindEmail);
     } else if (inputName === "password") {
       setPassword(inputValue);
-      console.log(password);
+      // console.log(password);
     } else if (inputName === "confirmPassword") {
       matchPasswords(inputValue, password, setMatchingPassword);
     }
   }
+
+  function sendRequest() {}
 
   return (
     <form>
@@ -37,15 +57,15 @@ export default function SignUp() {
         <label>Username</label>
         <input type="text" className="form-control" placeholder="Enter username" name="username" onChange={(e) => getInputValue(e)} />
       </div>
-      <p className={username === "found" ? "input-red" : username === "notFound" ? "input-green" : "forgot-password"}>
-        {username === "found" ? "Username is occupied" : username === "notFound" ? "OK" : "Searching in database..."}
+      <p className={findUsername === "found" ? "input-red" : findUsername === "notFound" ? "input-green" : "forgot-password"}>
+        {findUsername === "found" ? "Username is occupied" : findUsername === "notFound" ? "OK" : "Searching in database..."}
       </p>
       <div className="mb-3">
         <label>Email address</label>
         <input type="email" className="form-control" placeholder="Enter email" name="email" onChange={(e) => getInputValue(e)} />
       </div>
-      <p className={email === "found" ? "input-red" : email === "notFound" ? "input-green" : "forgot-password"}>
-        {email === "found" ? "Email adress is occupied" : email === "notFound" ? "OK" : "Searching in database..."}
+      <p className={findEmail === "found" ? "input-red" : findEmail === "notFound" ? "input-green" : "forgot-password"}>
+        {findEmail === "found" ? "Email adress is occupied" : findEmail === "notFound" ? "OK" : "Searching in database..."}
       </p>
       <div className="mb-3">
         <label>Password</label>
@@ -60,7 +80,7 @@ export default function SignUp() {
       </p>
       <br></br>
       <div className="d-grid">
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" onClick={sendRequest}>
           Sign Up
         </button>
       </div>

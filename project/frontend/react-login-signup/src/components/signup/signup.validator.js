@@ -1,7 +1,7 @@
 // import React, { useState } from "react";
 // import { getAllUsers } from "../../client/buttons.client";
 
-export function findUsername(inputValue, userData, setUsername) {
+export function findUsernames(inputValue, userData, setFindUsername) {
   const userNames = [];
   userData.forEach((res) => {
     userNames.push(res.username);
@@ -9,13 +9,13 @@ export function findUsername(inputValue, userData, setUsername) {
   console.log(userNames);
 
   if (userNames.includes(inputValue)) {
-    setUsername("found");
+    setFindUsername("found");
   } else {
-    setUsername("notFound");
+    setFindUsername("notFound");
   }
 }
 
-export function findEmail(inputValue, userData, setEmail) {
+export function findEmails(inputValue, userData, setFindEmail) {
   const emailAdresses = [];
   userData.forEach((res) => {
     emailAdresses.push(res.email);
@@ -23,9 +23,9 @@ export function findEmail(inputValue, userData, setEmail) {
   console.log(emailAdresses);
 
   if (emailAdresses.includes(inputValue)) {
-    setEmail("found");
+    setFindEmail("found");
   } else {
-    setEmail("notFound");
+    setFindEmail("notFound");
   }
 }
 

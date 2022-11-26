@@ -7,7 +7,6 @@ import sha256 from "sha256";
 const userController = express.Router();
 
 const { validateSignup } = require("../validator/signup.validator");
-// import validateSignup from "../validator/signup.validator";
 
 /**
  * USERS
@@ -27,7 +26,7 @@ userController.get("/", (req, res) => {
 });
 
 userController.post("/api/signup", (req, res) => {
-  const { username, email, password /* confirmPassword */ } = req.body;
+  const { username, email, password, confirmPassword } = req.body;
   // validate req.body
   const { error, value } = validateSignup(req.body);
 
@@ -39,7 +38,7 @@ userController.post("/api/signup", (req, res) => {
       username,
       email,
       hashedPassword: sha256(password),
-      // hashedPassword: sha256(confirmPassword),
+      hashedConfirmPassword: sha256(confirmPassword),
     };
     // save req.body to database
     const newUser = new User(userData);

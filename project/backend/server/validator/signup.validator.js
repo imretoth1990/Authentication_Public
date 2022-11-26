@@ -6,7 +6,7 @@ const signupSchema = Joi.object({
   username: Joi.string().required(),
   email: Joi.string().email().required(),
   password: Joi.string().min(6).max(10).required(),
-  //   confirmPassword: Joi.ref("password"),
+  confirmPassword: Joi.ref("password"),
 });
 
 module.exports.validateSignup = validator(signupSchema);
