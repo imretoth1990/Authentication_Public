@@ -15,10 +15,25 @@ export function getAllUsers(setData) {
     .catch((err) => console.error(err));
 }
 
-// export async function sendUserData() {
-// const requestOptions = {
-//   method: 'POST',
-//   headers: 'Content-Type': 'application/json',
-//   body: JSON.stringify()
-// }
-// }
+export async function sendSignupData(username, email, password, confirmPassword) {
+  const signupData = {
+    username: `${username}`,
+    email: `${email}`,
+    password: `${password}`,
+    confirmPassword: `${confirmPassword}`,
+  };
+
+  console.dir(signupData);
+
+  // send post request
+
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(signupData),
+  };
+
+  const res = await fetch("http://localhost:8080/api/signup", requestOptions);
+  const data = await res.json();
+  console.log(data);
+}
