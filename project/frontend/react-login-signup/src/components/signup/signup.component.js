@@ -25,6 +25,8 @@ export default function SignUp() {
     getAllUsers(setData);
   }, []);
 
+  // Check if username and email occupied
+
   function getInputValue(e) {
     const inputName = e.target.name;
     const inputValue = e.target.value;
