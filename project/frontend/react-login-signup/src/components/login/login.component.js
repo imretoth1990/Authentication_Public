@@ -3,7 +3,7 @@ export default function Login() {
     <form>
       <h3>Sign In</h3>
       <div className="mb-3">
-        <label>Username or Email</label>
+        <label>Username/Email</label>
         <input type="username/email" className="form-control" placeholder="Enter username or email" />
       </div>
       <div className="mb-3">

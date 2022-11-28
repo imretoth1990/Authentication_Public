@@ -55,7 +55,7 @@ export default function SignUp() {
       return (
         <>
           <div className="card text-center">
-            <h5 className="card-header">You are done!</h5>
+            <h5 className="card-header text-success">You are done!</h5>
             <div className="card-body">
               Message: <p>{response}</p>
             </div>
@@ -69,7 +69,7 @@ export default function SignUp() {
       return (
         <>
           <div className="card text-center m-3">
-            <h5 className="card-header">Oooops. Something missing!</h5>
+            <h5 className="card-header text-danger">Oooops. Something missing!</h5>
             <div className="card-body">
               Message:
               {response.map((item, index) => {
@@ -82,7 +82,7 @@ export default function SignUp() {
             </div>
           </div>
           <p className="input-red">
-            Go back to <a href="/sign-up"> sign up again.</a>
+            Go back to <a href="/sign-up"> sign up</a> again.
           </p>
         </>
       );
