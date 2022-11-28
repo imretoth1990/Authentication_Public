@@ -1,5 +1,6 @@
 import express from "express";
 import { User } from "../database/models";
+
 // const Joi = require("joi");
 const crypto = require("crypto");
 
@@ -8,6 +9,8 @@ import sha256 from "sha256";
 const userController = express.Router();
 
 const { validateSignup } = require("../validator/signup.validator");
+
+import { sendConfirmationEmail } from "./nodemailer/nodemailer";
 
 /**
  * USERS
@@ -53,7 +56,8 @@ userController.post("/api/signup", (req, res) => {
     newUser
       .save()
       .then(() => {
-        res.status(200).send([{ message: "Registration is successful" }]);
+        res.status(200).send([{ message: "Registration is successful", data: value }]);
+        sendConfirmationEmail(value);
       })
       .catch((err) => {
         res.status(400).send([{ message: "Unable to save" }]);
