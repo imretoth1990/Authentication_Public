@@ -31,7 +31,7 @@ userController.post("/api/signup", (req, res) => {
   const { error, value } = validateSignup(req.body);
 
   if (error) {
-    console.log(error);
+    console.error(error);
     return res.send(error.details);
   } else {
     const userData = {
@@ -45,10 +45,10 @@ userController.post("/api/signup", (req, res) => {
     newUser
       .save()
       .then(() => {
-        res.status(200).send({ message: "Registration is successful" });
+        res.status(200).send([{ message: "Registration is successful" }]);
       })
       .catch((err) => {
-        res.status(400).send({ message: "Unable to save" });
+        res.status(400).send([{ message: "Unable to save" }]);
       });
   }
 });

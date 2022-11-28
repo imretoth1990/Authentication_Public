@@ -1,19 +1,11 @@
-import { useState } from "react";
-
-export function DisplayResponse({ response }) {
-  const [message, setMessage] = useState([]);
-
-  setMessage(response);
-
-  console.log(message);
-
-  if (message.includes("Registration is successful")) {
+export function DisplayResponse() {
+  if (result.includes("Registration is successful")) {
     return (
       <>
         <div className="card text-center m-3">
           <h5 className="card-header">You are done!</h5>
           <div className="card-body">
-            Message: <p>{message}</p>
+            Message: <p>{result}</p>
           </div>
         </div>
         <p className="input-green">
@@ -27,7 +19,7 @@ export function DisplayResponse({ response }) {
         <div className="card text-center m-3">
           <h5 className="card-header">Oooops. Something missing!</h5>
           <div className="card-body">
-            Message: <p>{message}</p>
+            Message: <p>{result}</p>
           </div>
         </div>
         <p className="input-red">

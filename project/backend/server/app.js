@@ -37,7 +37,6 @@ app.listen(port, () => {
   mongoose
     .connect(`${mongo_uri}`)
     .then((res) => {
-      // console.dir(res);
       console.log(`Connection Succesful to ${mongo_uri}`);
     })
     .catch((err) => console.error(`Error in DB connection ${err} MONGO_URI: ${mongo_uri}`));
