@@ -82,12 +82,21 @@ html,
   color: green;
   margin: 0;
 }
+
+.input-green a {
+  color: #167bff;
+}
+
 .input-red {
   text-align: right;
   font-size: 13px;
   padding-top: 10px;
   color: red;
   margin: 0;
+}
+
+.input-red a {
+  color: #167bff;
 }
 
 .not-registered,

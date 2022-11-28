@@ -29,11 +29,11 @@ export function findEmails(inputValue, userData, setFindEmail) {
   }
 }
 
-export function matchPasswords(inputValue, password, setMatchingPassword) {
-  console.log(inputValue);
-  if (inputValue === password) {
-    setMatchingPassword("match");
-  } else {
-    setMatchingPassword("notMatch");
-  }
-}
+// export function matchPasswords(inputValue, password, setMatchingPassword) {
+//   console.log(inputValue);
+//   if (inputValue === password) {
+//     setMatchingPassword("match");
+//   } else {
+//     setMatchingPassword("notMatch");
+//   }
+// }

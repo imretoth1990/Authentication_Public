@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { findEmails, findUsernames /* , matchPasswords */ } from "./signup.validator";
 import { getAllUsers } from "../../client/buttons.client";
 import { sendSignupData } from "../../client/buttons.client";
+import { DisplayResponse } from "../display/display.response";
 
-export default function SignUp() {
+export default function SignUp({ setResponse }) {
   const [data, setData] = useState([]);
   const [findUsername, setFindUsername] = useState(null);
   const [findEmail, setFindEmail] = useState(null);
@@ -14,12 +16,7 @@ export default function SignUp() {
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
 
-  /**
-   * Request allowed if
-   * username: "notFound"
-   * email: "notFound"
-   * matchingPassword: "match"
-   *  */
+  const [result, setResult] = useState([]);
 
   useEffect(() => {
     getAllUsers(setData);
@@ -73,7 +70,9 @@ export default function SignUp() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    sendSignupData(username, email, password, confirmPassword);
+    sendSignupData(username, email, password, confirmPassword, setResult);
+    console.log(result);
+    // setResponse(result);
   }
 
   return (
@@ -106,9 +105,11 @@ export default function SignUp() {
       </p> */}
       <br></br>
       <div className="d-grid">
-        <button type="submit" className="btn btn-primary" onClick={(e) => handleSubmit(e)}>
-          Sign Up
-        </button>
+        <Link to="/display">
+          <button type="submit" className="btn btn-primary" onClick={(e) => handleSubmit(e)}>
+            Sign Up
+          </button>
+        </Link>
       </div>
       <p className="forgot-password text-right">
         Already registered <a href="/sign-in">sign in?</a>

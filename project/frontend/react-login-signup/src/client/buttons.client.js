@@ -1,3 +1,5 @@
+// import { response } from "express";
+
 export function getButtonData(setData, buttonClicked) {
   // Guard clause
   if (buttonClicked === "" || buttonClicked === undefined) return;
@@ -15,7 +17,7 @@ export function getAllUsers(setData) {
     .catch((err) => console.error(err));
 }
 
-export async function sendSignupData(username, email, password, confirmPassword) {
+export function sendSignupData(username, email, password, confirmPassword, setResult) {
   const signupData = {
     username: `${username}`,
     email: `${email}`,
@@ -23,7 +25,7 @@ export async function sendSignupData(username, email, password, confirmPassword)
     confirmPassword: `${confirmPassword}`,
   };
 
-  console.dir(signupData);
+  // console.dir(signupData);
 
   // send post request
 
@@ -33,7 +35,8 @@ export async function sendSignupData(username, email, password, confirmPassword)
     body: JSON.stringify(signupData),
   };
 
-  const res = await fetch("http://localhost:8080/api/signup", requestOptions);
-  const data = await res.json();
-  console.log(data);
+  fetch("http://localhost:8080/api/signup", requestOptions)
+    .then((response) => response.json())
+    .then((data) => setResult(data))
+    .catch((err) => console.error(err));
 }
