@@ -1,14 +1,16 @@
 import express from "express";
-import { User } from "../database/models";
+// import { User } from "../database/models";
 
 const confirmController = express.Router();
 
 confirmController.post("/api/confirm/", (req, res) => {
   const { code, user } = req.query;
 
-  const link = `http://localhost:8080${req.url}`;
+  //   validateData(code, user);
 
-  res.status(200).send(link);
+  console.log(code + user);
+
+  res.status(200).send({ message: "Registration confirmed successfully" });
 
   // User.findOne({ "sentOutVerificationLink": link }, (err, result) => {
   //   if (err) {
