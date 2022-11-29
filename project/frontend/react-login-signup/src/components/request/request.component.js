@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { getButtonData } from "../../client/buttons.client";
+import { useState } from "react"
+import { BrowserRouter as Link } from "react-router-dom"
+import { getButtonData } from "../../client/buttons.client"
 
 function GetRequest({ buttonClicked }) {
-  const [data, setData] = useState("");
+  const [data, setData] = useState("")
 
-  getButtonData(setData, buttonClicked);
+  getButtonData(setData, buttonClicked)
 
   return (
     <>
@@ -15,10 +16,10 @@ function GetRequest({ buttonClicked }) {
         </div>
       </div>
       <p className="not-registered text-right">
-        Go back to <a href="/buttons">home page.</a>
+        Go back to <Link to="/buttons">home page.</Link>
       </p>
     </>
-  );
+  )
 }
 
-export default GetRequest;
+export default GetRequest

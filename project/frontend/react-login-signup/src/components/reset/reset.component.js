@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
+import { BrowserRouter as Link } from "react-router-dom"
 export default class Reset extends Component {
   render() {
     return (
@@ -8,7 +9,11 @@ export default class Reset extends Component {
         <br></br>
         <div className="mb-3">
           <label>Username or Email</label>
-          <input type="username/email" className="form-control" placeholder="Enter username or email" />
+          <input
+            type="username/email"
+            className="form-control"
+            placeholder="Enter username or email"
+          />
         </div>
         <div className="d-grid">
           <button type="submit" className="btn btn-primary">
@@ -16,9 +21,9 @@ export default class Reset extends Component {
           </button>
         </div>
         <p className="not-registered text-right">
-          Go back to <a href="/sign-in">sign in.</a>
+          Go back to <Link to="/sign-in">sign in.</Link>
         </p>
       </form>
-    );
+    )
   }
 }

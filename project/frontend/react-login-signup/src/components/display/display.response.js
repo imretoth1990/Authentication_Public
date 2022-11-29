@@ -1,3 +1,5 @@
+import { BrowserRouter as Link } from "react-router-dom"
+
 export function DisplayResponse() {
   if (result.includes("Registration is successful")) {
     return (
@@ -9,10 +11,10 @@ export function DisplayResponse() {
           </div>
         </div>
         <p className="input-green">
-          Go back to <a href="/sign-in"> sign in.</a>
+          Go back to <Link to="/sign-in"> sign in.</Link>
         </p>
       </>
-    );
+    )
   } else {
     return (
       <>
@@ -23,9 +25,9 @@ export function DisplayResponse() {
           </div>
         </div>
         <p className="input-red">
-          Go back to <a href="/sign-up"> sign up again.</a>
+          Go back to <Link to="/sign-up"> sign up again.</Link>
         </p>
       </>
-    );
+    )
   }
 }
