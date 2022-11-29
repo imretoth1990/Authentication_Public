@@ -7,7 +7,7 @@ export default function Confirm() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [code, setCode] = useState(null);
   const [username, setUsername] = useState(null);
-  const [response, setResponse] = useState(null);
+  const [response, setResponse] = useState(false);
   const [renderResponse, setRenderResponse] = useState(false);
 
   function handleConfirm() {
@@ -31,8 +31,8 @@ export default function Confirm() {
           {/* <h3>your registration!</h3> */}
           <br></br>
         </div>
-        <div className="input-green">
-          <h3>{response || "Waiting for connection..."}</h3>
+        <div className={response ? "input-green" : "input-red"}>
+          <h3>{response || "Waiting for response..."}</h3>
         </div>
       </>
     );
