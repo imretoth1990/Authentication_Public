@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 dotenv.config();
 
 // Import controllers
-import { userController, buttonController } from "./controller";
+import { userController, buttonController, confirmController } from "./controller";
 
 // Init an Express App.
 const app = express();
@@ -30,6 +30,7 @@ app.use(bodyParser.json());
 // use all controllers(APIs) here
 app.use("/", buttonController);
 app.use("/", userController);
+app.use("/", confirmController);
 
 // Start Server here
 app.listen(port, () => {

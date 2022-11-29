@@ -7,6 +7,7 @@ import SignUp from "./components/signup/signup.component";
 import Reset from "./components/reset/reset.component";
 import Buttons from "./components/buttons/buttons.component";
 import GetRequest from "./components/request/request.component";
+import Confirm from "./components/confirm/confirm.component";
 
 function App() {
   const [buttonClicked, setButtonClicked] = useState("");
@@ -49,6 +50,7 @@ function App() {
               <Route path="/reset" element={<Reset />} />
               <Route path="/buttons" element={<Buttons setButtonClicked={setButtonClicked} />} />
               <Route path="/request" element={<GetRequest buttonClicked={buttonClicked} />} />
+              <Route path="/confirm/" element={<Confirm />} />
             </Routes>
           </div>
         </div>
