@@ -1,27 +1,23 @@
-const nodemailer = require("nodemailer");
+const nodemailer = require('nodemailer')
 
-export function sendConfirmationEmail(link) {
-  console.log(link);
-  /* const transporter = nodemailer.createTransport({
-    service: "Yahoo",
+export async function sendConfirmationEmail(value) {
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.ethereal.email',
+    port: 587,
     auth: {
-      user: "nodemailer_reactors@yahoo.com",
-      pass: 'hello1234!"',
+      user: 'emmie.larkin36@ethereal.email',
+      pass: 'kFUXdRaZNNYzn8JB7m',
     },
-  });
+  })
 
-  const options = {
-    from: "nodemailer_reactors@yahoo.com",
-    to: "imretoth1990@gmail.com",
-    subject: "Confirm your registration",
-    text: `Click on the link below to confirm your registration. \n \n ${link}`,
-  };
+  const info = await transporter.sendMail({
+    from: 'emmie.larkin36@ethereal.email',
+    to: value.email,
+    subject: 'Hello ✔',
+    text: 'Hello world?',
+    html: `<b>Hello world? ${value.username}</b>`,
+  })
 
-  transporter.sendMail(options, (err, info) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    console.log("Sent: " + info.response);
-  }); */
+  console.log('Message sent: %s', info.messageId)
+  console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info))
 }

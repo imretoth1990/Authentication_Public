@@ -1,16 +1,16 @@
-import express from "express";
-import { User } from "../database/models";
+import express from 'express'
+import { User } from '../database/models'
 
 // const Joi = require("joi");
-const crypto = require("crypto");
+const crypto = require('crypto')
 
-import sha256 from "sha256";
+import sha256 from 'sha256'
 
-const userController = express.Router();
+const userController = express.Router()
 
-const { validateSignup } = require("../validator/signup.validator");
+const { validateSignup } = require('../validator/signup.validator')
 
-import { sendConfirmationEmail } from "./nodemailer/nodemailer";
+import { sendConfirmationEmail } from './nodemailer/nodemailer'
 
 /**
  * USERS
@@ -21,23 +21,23 @@ import { sendConfirmationEmail } from "./nodemailer/nodemailer";
  * retrieve and display all Users in the User Model
  */
 
-userController.get("/", (req, res) => {
+userController.get('/', (req, res) => {
   User.find({}, (err, result) => {
     res.status(200).json({
       data: result,
-    });
-  });
-});
+    })
+  })
+})
 
-userController.post("/api/signup", (req, res) => {
-  const { username, email, password, confirmPassword } = req.body;
+userController.post('/api/signup', (req, res) => {
+  const { username, email, password, confirmPassword } = req.body
 
   // validate req.body
-  const { error, value } = validateSignup(req.body);
+  const { error, value } = validateSignup(req.body)
 
   if (error) {
-    console.error(error);
-    return res.send(error.details);
+    console.error(error)
+    return res.send(error.details)
   } else {
     const userData = {
       username,
@@ -46,34 +46,34 @@ userController.post("/api/signup", (req, res) => {
       hashedConfirmPassword: sha256(confirmPassword),
       confirm: {
         date: new Date().toString(),
-        userId: crypto.randomBytes(4).toString("hex"),
-        secureCode: crypto.randomBytes(6).toString("hex"),
+        userId: crypto.randomBytes(4).toString('hex'),
+        secureCode: crypto.randomBytes(6).toString('hex'),
       },
-    };
+    }
     // save req.body to database
-    const newUser = new User(userData);
+    const newUser = new User(userData)
 
     newUser
       .save()
       .then(() => {
-        res.status(200).send([{ message: "Registration is successful", data: value }]);
-        sendConfirmationEmail(value);
+        res.status(200).send([{ message: 'Registration is successful', data: value }])
+        sendConfirmationEmail(value)
       })
       .catch((err) => {
-        res.status(400).send([{ message: "Unable to save" }]);
-      });
+        res.status(400).send([{ message: 'Unable to save' }])
+      })
   }
-});
+})
 
 // api/confirm
 // példa request: http://localhost:8080/api/confirm?code=7894&user=imi
 
-userController.post("/api/confirm/", (req, res) => {
-  const { code, user } = req.query;
+userController.post('/api/confirm/', (req, res) => {
+  const { code, user } = req.query
 
-  const link = `http://localhost:8080${req.url}`;
+  const link = `http://localhost:8080${req.url}`
 
-  res.status(200).send(link);
+  res.status(200).send(link)
 
   // User.findOne({ "sentOutVerificationLink": link }, (err, result) => {
   //   if (err) {
@@ -86,14 +86,14 @@ userController.post("/api/confirm/", (req, res) => {
   //     }
   //   }
   // });
-});
+})
 
 // api/login
 
 // api/logout
 function createLink(code, username) {
-  const link = `http://localhost:3000/confirm?code=${code}&user=${username}`;
+  const link = `http://localhost:3000/confirm?code=${code}&user=${username}`
 }
 // api/reset
 
-export default userController;
+export default userController
