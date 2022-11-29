@@ -2,7 +2,7 @@
 
 import userController from "./user.controller";
 import buttonController from "./buttons.controller";
-import confirmController from "./confirm.controller";
+import confirmController from "./confirm.controller/confirm.controller";
 import rootController from "./root.controller";
 
 export { rootController, userController, buttonController, confirmController };
