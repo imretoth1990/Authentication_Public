@@ -58,7 +58,10 @@ export default function SignUp() {
           <div className="card text-center">
             <h5 className="card-header text-success">You are done!</h5>
             <div className="card-body">
-              Message: <p>{response}</p>
+              Message:{" "}
+              <p>
+                {response} <br /> Check your inbox to verify your account.
+              </p>
             </div>
           </div>
           <p className="input-green">
@@ -83,7 +86,7 @@ export default function SignUp() {
             </div>
           </div>
           <p className="input-red">
-            Go back to <Link to="/sign-up"> sign up</Link> again.
+            Go back to <a href="/sign-up"> sign up</a> again.
           </p>
         </>
       )

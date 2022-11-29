@@ -1,21 +1,17 @@
-export async function sendDataToConfirm(code, username, setResponse, fullURL) {
-  const dataToSend = [];
-
+export async function sendDataToConfirm(secureCode, username, setResponse, fullURL) {
   const confirmData = {
-    code: `${code}`,
+    secureCode: `${secureCode}`,
     username: `${username}`,
-  };
+  }
 
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(confirmData),
-  };
+  }
 
-  const res = await fetch("http://localhost:8080/api/confirm", requestOptions);
-  const response = await res.json();
+  const res = await fetch("http://localhost:8080/api/confirm", requestOptions)
+  const data = await res.json()
 
-  await response.forEach((res) => dataToSend.push(res.message));
-
-  await setResponse(dataToSend);
+  await setResponse(data.message)
 }
