@@ -30,7 +30,7 @@ buttonController.get("/api/public", (req, res) => {
 
 /**
  * POST/
- * Add a new User to your database
+ * save strings into button database
  */
 
 buttonController.post("/create/button", (req, res) => {

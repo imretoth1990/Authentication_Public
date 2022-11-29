@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import { sendConfirmDataToBackend } from "../../client/confirm.client";
+import { sendDataToConfirm } from "../../client/confirm.client";
 
 export default function Confirm() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,9 +17,7 @@ export default function Confirm() {
     // setCode(codeFromUrl);
     // setUsername(usernameFromUrl);
 
-    console.log(code + " " + username);
-
-    // sendConfirmDataToBackend(code, username, setResponse);
+    sendDataToConfirm(code, username, setResponse);
     setRenderResponse(true);
   }
 
@@ -28,7 +26,7 @@ export default function Confirm() {
       <>
         <div>
           <h3>Hurray! </h3>
-          {/* <h3>your registration!</h3> */}
+          {/* <h3>your registraation!</h3> */}
           <br></br>
         </div>
         <div className={response ? "input-green" : "input-red"}>

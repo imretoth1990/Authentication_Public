@@ -3,5 +3,6 @@
 import userController from "./user.controller";
 import buttonController from "./buttons.controller";
 import confirmController from "./confirm.controller";
+import rootController from "./root.controller";
 
-export { userController, buttonController, confirmController };
+export { rootController, userController, buttonController, confirmController };

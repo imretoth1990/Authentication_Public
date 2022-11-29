@@ -7,7 +7,8 @@ import mongoose from "mongoose";
 dotenv.config();
 
 // Import controllers
-import { userController, buttonController, confirmController } from "./controller";
+import { rootController, userController, buttonController, confirmController } from "./controller";
+// import App from "../../frontend/react-login-signup/src/App";
 
 // Init an Express App.
 const app = express();
@@ -28,6 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // use all controllers(APIs) here
+app.use("/", rootController);
 app.use("/", buttonController);
 app.use("/", userController);
 app.use("/", confirmController);

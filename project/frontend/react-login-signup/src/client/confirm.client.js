@@ -1,4 +1,4 @@
-export async function sendConfirmDataToBackend(code, username, setResponse) {
+export async function sendDataToConfirm(code, username, setResponse, fullURL) {
   const dataToSend = [];
 
   const confirmData = {
@@ -12,7 +12,7 @@ export async function sendConfirmDataToBackend(code, username, setResponse) {
     body: JSON.stringify(confirmData),
   };
 
-  const res = await fetch("http://localhost:8080//api/confirm", requestOptions);
+  const res = await fetch("http://localhost:8080/api/confirm", requestOptions);
   const response = await res.json();
 
   await response.forEach((res) => dataToSend.push(res.message));

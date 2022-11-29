@@ -10,7 +10,7 @@ const userSchema = new Schema({
   confirm: {
     date: { type: Date, required: true },
     userId: { type: String, required: true },
-    secureCode: { type: String, required: true },
+    secureCode: { type: String, required: true, unique: true },
   },
 });
 
