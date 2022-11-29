@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { BrowserRouter as Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { getButtonData } from "../../client/buttons.client"
 
 function GetRequest({ buttonClicked }) {

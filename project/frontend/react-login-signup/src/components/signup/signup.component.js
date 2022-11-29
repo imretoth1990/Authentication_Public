@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { BrowserRouter as Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { findEmails, findUsernames } from "./signup.validator"
 import { getAllUsers } from "../../client/buttons.client"
 import { sendSignupData } from "../../client/signup.client"

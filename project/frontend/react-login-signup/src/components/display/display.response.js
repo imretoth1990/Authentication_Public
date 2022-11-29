@@ -1,5 +1,3 @@
-import { BrowserRouter as Link } from "react-router-dom"
-
 export function DisplayResponse() {
   if (result.includes("Registration is successful")) {
     return (
