@@ -5,21 +5,21 @@ import { sendConfirmDataToBackend } from "../../client/confirm.client";
 
 export default function Confirm() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [code, setCode] = useState(null);
-  const [username, setUsername] = useState(null);
+  //   const [code, setCode] = useState(null);
+  //   const [username, setUsername] = useState(null);
   const [response, setResponse] = useState(false);
   const [renderResponse, setRenderResponse] = useState(false);
 
   function handleConfirm() {
     // event.preventDefault();
-    const codeFromUrl = searchParams.get("code");
-    const usernameFromUrl = searchParams.get("user");
-    setCode(codeFromUrl);
-    setUsername(usernameFromUrl);
+    const code = searchParams.get("code");
+    const username = searchParams.get("user");
+    // setCode(codeFromUrl);
+    // setUsername(usernameFromUrl);
 
     console.log(code + " " + username);
 
-    sendConfirmDataToBackend(code, username, setResponse);
+    // sendConfirmDataToBackend(code, username, setResponse);
     setRenderResponse(true);
   }
 
