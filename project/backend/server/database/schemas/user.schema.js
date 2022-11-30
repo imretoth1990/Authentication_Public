@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import sha256 from "sha256";
+
 // import randomBytes from
 
 const userSchema = new Schema({
@@ -13,13 +13,5 @@ const userSchema = new Schema({
     secureCode: { type: String, required: true, unique: true },
   },
 });
-
-/**
- * @param {*} password
- */
-
-userSchema.methods.comparePassword = function comparePassword(password) {
-  return this.hashedPassword === sha256(password);
-};
 
 export default userSchema;
