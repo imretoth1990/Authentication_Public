@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 import { sendDataToConfirm } from "../../client/confirm.client";
 
@@ -7,6 +7,8 @@ export default function Confirm() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [response, setResponse] = useState("");
   const [renderResponse, setRenderResponse] = useState(false);
+
+  const navigate = useNavigate();
 
   function handleConfirm() {
     const code = searchParams.get("code");
@@ -16,22 +18,24 @@ export default function Confirm() {
     setRenderResponse(true);
   }
 
-  function returnToSignIn() {
+  /* function returnToSignIn() {
     window.location.href = "/sign-in";
-  }
+    navigate("/sign-in");
+  } */
 
-  function returnToSignUp() {
+  /* function returnToSignUp() {
     window.location.href = "/sign-up";
-  }
+    navigate("/sign-up");
+  } */
 
   if (renderResponse) {
     if (response.includes("Invalid")) {
       setTimeout(() => {
-        returnToSignUp();
+        navigate("/sign-up");
       }, 3000);
     } else {
       setTimeout(() => {
-        returnToSignIn();
+        navigate("/sign-in");
       }, 3000);
     }
   }

@@ -1,54 +1,54 @@
-import React, { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-import { findEmails, findUsernames } from "./signup.validator"
-import { getAllUsers } from "../../client/buttons.client"
-import { sendSignupData } from "../../client/signup.client"
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { findEmails, findUsernames } from "./signup.validator";
+import { getAllUsers } from "../../client/buttons.client";
+import { sendSignupData } from "../../client/signup.client";
 
 export default function SignUp() {
-  const [data, setData] = useState([])
-  const [findUsername, setFindUsername] = useState(null)
-  const [findEmail, setFindEmail] = useState(null)
+  const [data, setData] = useState([]);
+  const [findUsername, setFindUsername] = useState(null);
+  const [findEmail, setFindEmail] = useState(null);
 
-  const [username, setUsername] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const [response, setResponse] = useState([])
+  const [response, setResponse] = useState([]);
 
-  const [renderDisplay, setRenderDisplay] = useState(false)
+  const [renderDisplay, setRenderDisplay] = useState(false);
 
   useEffect(() => {
-    getAllUsers(setData)
-  }, [])
+    getAllUsers(setData);
+  }, []);
 
   // Check if username and email occupied
 
   function getInputValue(e) {
-    const inputName = e.target.name
-    const inputValue = e.target.value
+    const inputName = e.target.name;
+    const inputValue = e.target.value;
 
     if (inputName === "username") {
-      findUsernames(inputValue, data, setFindUsername)
+      findUsernames(inputValue, data, setFindUsername);
       if (findUsername === "notFound") {
-        setUsername(inputValue)
+        setUsername(inputValue);
       }
     } else if (inputName === "email") {
-      findEmails(inputValue, data, setFindEmail)
+      findEmails(inputValue, data, setFindEmail);
       if (findEmail === "notFound") {
-        setEmail(inputValue)
+        setEmail(inputValue);
       }
     } else if (inputName === "password") {
-      setPassword(inputValue)
+      setPassword(inputValue);
     } else if (inputName === "confirmPassword") {
-      setConfirmPassword(inputValue)
+      setConfirmPassword(inputValue);
     }
   }
 
   function handleSubmit(e) {
-    e.preventDefault()
-    sendSignupData(username, email, password, confirmPassword, setResponse)
-    setRenderDisplay(true)
+    e.preventDefault();
+    sendSignupData(username, email, password, confirmPassword, setResponse);
+    setRenderDisplay(true);
   }
 
   if (renderDisplay) {
@@ -68,7 +68,7 @@ export default function SignUp() {
             Go back to <Link to="/sign-in"> sign in.</Link>
           </p>
         </>
-      )
+      );
     } else {
       return (
         <>
@@ -81,7 +81,7 @@ export default function SignUp() {
                   <React.Fragment key={index}>
                     <p>{item}</p>
                   </React.Fragment>
-                )
+                );
               })}
             </div>
           </div>
@@ -89,7 +89,7 @@ export default function SignUp() {
             Go back to <a href="/sign-up"> sign up</a> again.
           </p>
         </>
-      )
+      );
     }
   } else {
     return (
@@ -97,72 +97,24 @@ export default function SignUp() {
         <h3>Sign Up</h3>
         <div className="mb-3">
           <label>Username</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Enter username"
-            name="username"
-            onChange={(e) => getInputValue(e)}
-          />
+          <input type="text" className="form-control" placeholder="Enter username" name="username" onChange={(e) => getInputValue(e)} />
         </div>
-        <p
-          className={
-            findUsername === "found"
-              ? "input-red"
-              : findUsername === "notFound"
-              ? "input-green"
-              : "forgot-password"
-          }
-        >
-          {findUsername === "found"
-            ? "Username is occupied"
-            : findUsername === "notFound"
-            ? "OK"
-            : "Searching in database..."}
+        <p className={findUsername === "found" ? "input-red" : findUsername === "notFound" ? "input-green" : "forgot-password"}>
+          {findUsername === "found" ? "Username is occupied" : findUsername === "notFound" ? "OK" : "Searching in database..."}
         </p>
         <div className="mb-3">
           <label>Email address</label>
-          <input
-            type="email"
-            className="form-control"
-            placeholder="Enter email"
-            name="email"
-            onChange={(e) => getInputValue(e)}
-          />
+          <input type="email" className="form-control" placeholder="Enter email" name="email" onChange={(e) => getInputValue(e)} />
         </div>
-        <p
-          className={
-            findEmail === "found"
-              ? "input-red"
-              : findEmail === "notFound"
-              ? "input-green"
-              : "forgot-password"
-          }
-        >
-          {findEmail === "found"
-            ? "Email adress is occupied"
-            : findEmail === "notFound"
-            ? "OK"
-            : "Searching in database..."}
+        <p className={findEmail === "found" ? "input-red" : findEmail === "notFound" ? "input-green" : "forgot-password"}>
+          {findEmail === "found" ? "Email adress is occupied" : findEmail === "notFound" ? "OK" : "Searching in database..."}
         </p>
         <div className="mb-3">
           <label>Password</label>
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Enter password"
-            name="password"
-            onChange={(e) => getInputValue(e)}
-          />
+          <input type="password" className="form-control" placeholder="Enter password" name="password" onChange={(e) => getInputValue(e)} />
         </div>
         <div className="mb-3">
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Confirm password"
-            name="confirmPassword"
-            onChange={(e) => getInputValue(e)}
-          />
+          <input type="password" className="form-control" placeholder="Confirm password" name="confirmPassword" onChange={(e) => getInputValue(e)} />
         </div>
         <br></br>
         <div className="d-grid">
@@ -174,6 +126,6 @@ export default function SignUp() {
           Already registered <Link to="/sign-in">sign in?</Link>
         </p>
       </form>
-    )
+    );
   }
 }
