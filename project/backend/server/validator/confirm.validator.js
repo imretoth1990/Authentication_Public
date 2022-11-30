@@ -1,4 +1,4 @@
-const Joi = require("joi");
+/* const Joi = require("joi");
 
 const validator = (schema) => (payload) => schema.validate(payload, { abortEarly: false });
 
@@ -7,4 +7,4 @@ const confirmSchema = Joi.object({
   username: Joi.string().required(),
 });
 
-module.exports.validateConfirmation = validator(confirmSchema);
+module.exports.validateConfirmation = validator(confirmSchema); */

@@ -1,18 +1,23 @@
-import { User } from "../../database/models";
-import { Profile } from "../../database/models";
+import { User } from "../../database/models"
+import { Profile } from "../../database/models"
 
 export async function moveUserToProfileDB(userObject) {
-  const profileData = {
-    username: userObject[0].username,
-    email: userObject[0].email,
-    hashedPassword: userObject[0].hashedPassword,
-  };
+  try {
+    const profileData = {
+      username: userObject[0].username,
+      email: userObject[0].email,
+      hashedPassword: userObject[0].hashedPassword,
+    }
 
-  const confirmedUser = new Profile(profileData);
-  await confirmedUser.save();
+    const confirmedUser = new Profile(profileData)
+    await confirmedUser.save()
 
-  const deletedInfo = await User.deleteOne({ _id: userObject[0]._id });
+    const deletedInfo = await User.deleteOne({ _id: userObject[0]._id })
 
-  if (deletedInfo.deletedCount === 1) return true;
-  else return false;
+    if (deletedInfo.deletedCount === 1) return true
+    else throw Error("Unable to delete user from User database")
+  } catch (error) {
+    console.error(error)
+    return false
+  }
 }
