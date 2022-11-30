@@ -20,7 +20,7 @@ rootController.get("/", (req, res) => {
 });
 
 /**
- * GET VERIFIED USERS
+ * GET VERIFIED USERS (FROM PROFILE COLLECION)
  */
 
 rootController.get("/verifiedUsers", (req, res) => {

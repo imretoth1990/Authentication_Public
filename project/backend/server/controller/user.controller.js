@@ -61,4 +61,10 @@ userController.post("/api/signup", (req, res) => {
   }
 });
 
+/**
+ * LOGIN
+ */
+
+userController.post("/api/login", (req, res) => {});
+
 export default userController;
