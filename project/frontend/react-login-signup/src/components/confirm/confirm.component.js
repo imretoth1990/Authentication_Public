@@ -31,11 +31,11 @@ export default function Confirm() {
   if (renderResponse) {
     if (response.includes("Invalid")) {
       setTimeout(() => {
-        navigate("/sign-up");
+        navigate("/sign-up"); // react useNavigate doesn't cause re-render
       }, 3000);
     } else {
       setTimeout(() => {
-        navigate("/sign-in");
+        navigate("/sign-in"); // react useNavigate doesn't cause re-render
       }, 3000);
     }
   }
