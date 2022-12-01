@@ -1,41 +1,26 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { sendLoginData } from "../../client/login.client";
+import { useState, useRef } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { sendLoginData } from "../../client/login.client"
 
 export default function Login() {
-  const [loginInput, setLoginInput] = useState(null);
-  const [password, setPassword] = useState(null);
-  const [response, setResponse] = useState([]);
-  const [warnMessage, setWarnMessage] = useState("");
+  const navigate = useNavigate()
 
-  const navigate = useNavigate();
+  const loginInput = useRef(null)
+  const passwordInput = useRef(null)
+
+  const [response, setResponse] = useState([])
+  const [warnMessage, setWarnMessage] = useState("")
 
   function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
 
-    console.log("loginInput 👉️", loginInput);
-    console.log("password 👉️", password);
-
-    // send data to login client
-    sendLoginData(loginInput, password, setResponse);
-
-    console.log(response);
-
-    /**
-     * if response OK, redirect to homepage (to buttons)
-     */
+    sendLoginData(loginInput.current.value, passwordInput.current.value, setResponse)
 
     if (response.includes("successful")) {
-      navigate("/buttons");
+      navigate("/buttons")
     } else {
-      setLoginInput(null);
-      setPassword(null);
-      setWarnMessage("Incorrect username/email or password");
+      setWarnMessage("Incorrect username/email or password")
     }
-
-    // clear input values
-    setLoginInput(null);
-    setPassword(null);
   }
 
   return (
@@ -44,11 +29,21 @@ export default function Login() {
       <p className="text-danger text-center">{warnMessage}</p>
       <div className="mb-3">
         <label>Username or Email</label>
-        <input type="username" className="form-control" placeholder="username or email" onChange={(e) => setLoginInput(e.target.value)} />
+        <input
+          type="username"
+          ref={loginInput}
+          className="form-control"
+          placeholder="username or email"
+        />
       </div>
       <div className="mb-3">
         <label>Password</label>
-        <input type="password" className="form-control" placeholder="password" onChange={(e) => setPassword(e.target.value)} />
+        <input
+          type="password"
+          ref={passwordInput}
+          className="form-control"
+          placeholder="password"
+        />
       </div>
       <div className="d-grid">
         <button type="submit" className="btn btn-primary">
@@ -62,5 +57,5 @@ export default function Login() {
         If your are not registered, please <Link to="/sign-up">sign up!</Link>
       </p>
     </form>
-  );
+  )
 }

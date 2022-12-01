@@ -1,7 +1,7 @@
-import express from "express";
-import { Profile } from "../../database/models";
-import sha256 from "sha256";
-import comparePasswords from "./login.functions";
+import express from "express"
+import { Profile } from "../../database/models"
+import sha256 from "sha256"
+import comparePasswords from "./login.functions"
 
 /**
  * username: 'testUser',
@@ -9,29 +9,29 @@ import comparePasswords from "./login.functions";
    password: password
  */
 
-const loginController = express.Router();
+const loginController = express.Router()
 
 loginController.post("/api/login", async (req, res) => {
-  /* try { */
-  const loginType = Object.keys(req.body)[0];
+  try {
+    const loginType = Object.keys(req.body)[0]
 
-  const userData = await Profile.where(`${loginType}`).equals(req.body[loginType]);
+    const userData = await Profile.where(req.body[loginType]).equals(req.body[loginType])
 
-  const user = userData[0];
+    const [user] = userData
 
-  const userPassword = user.hashedPassword;
+    const userPassword = user.hashedPassword
 
-  const loginHashedPassword = sha256(req.body.password);
+    const loginHashedPassword = sha256(req.body.password)
 
-  const passwordIsValid = comparePasswords(userPassword, loginHashedPassword);
+    const passwordIsValid = comparePasswords(userPassword, loginHashedPassword)
 
-  if (passwordIsValid) {
-    res.status(200).send([{ message: "successful" }]);
+    if (passwordIsValid) {
+      res.status(200).send([{ message: "successful" }])
+    }
+  } catch (err) {
+    console.error(err.message)
+    res.status(500).send({ message: `server error: ${err.message}` })
   }
-  /* } catch (err) {
-    console.error(err.message);
-    res.status(500).send({ message: `server error: ${err.message}` });
-  } */
-});
+})
 
-export default loginController;
+export default loginController
