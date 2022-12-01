@@ -6,6 +6,7 @@ export default function Login() {
   const [loginInput, setLoginInput] = useState(null);
   const [password, setPassword] = useState(null);
   const [response, setResponse] = useState([]);
+  const [warnMessage, setWarnMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -26,7 +27,12 @@ export default function Login() {
 
     if (response.includes("successful")) {
       navigate("/buttons");
+    } else {
+      setLoginInput(null);
+      setPassword(null);
+      setWarnMessage("Incorrect username/email or password");
     }
+
     // clear input values
     setLoginInput(null);
     setPassword(null);
@@ -35,7 +41,7 @@ export default function Login() {
   return (
     <form onSubmit={handleSubmit}>
       <h3>Sign In</h3>
-
+      <p className="text-danger text-center">{warnMessage}</p>
       <div className="mb-3">
         <label>Username or Email</label>
         <input type="username" className="form-control" placeholder="username or email" onChange={(e) => setLoginInput(e.target.value)} />
