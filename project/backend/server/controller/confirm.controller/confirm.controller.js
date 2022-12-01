@@ -12,7 +12,7 @@ import { moveUserToProfileDB } from "./confirm.functions";
 confirmController.post(
   "/api/confirm",
   (req, res) => {
-    const { secureCode, username } = req.body;
+    const { secureCode, username, userId } = req.body;
 
     try {
       jwt.verify(secureCode, process.env.JWT_SECRET);

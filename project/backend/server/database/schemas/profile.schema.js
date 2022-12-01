@@ -3,6 +3,7 @@ import sha256 from "sha256";
 // import randomBytes from
 
 const profileSchema = new Schema({
+  userId: { type: String, required: true },
   username: { type: String, required: true },
   email: { type: String, required: true },
   hashedPassword: { type: String, required: true },

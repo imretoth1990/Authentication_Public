@@ -1,5 +1,6 @@
 import express from "express";
 import { Button } from "../database/models";
+import { checkAuth } from "../middlewares/checkAuth.js";
 
 const buttonController = express.Router();
 
@@ -12,7 +13,7 @@ const buttonController = express.Router();
  * read data from MongoDB and display the result in the browser
  */
 
-buttonController.get("/api/private", (req, res) => {
+buttonController.get("/api/private", checkAuth, (req, res) => {
   Button.findOne({ string: "private" }, (err, result) => {
     res.status(200).json({
       data: result,

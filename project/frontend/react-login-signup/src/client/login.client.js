@@ -28,20 +28,21 @@ export async function sendLoginData(loginInput, password, setResponse) {
       email: `${loginInput}`,
       password: `${password}`,
     };
-    console.log(loginData);
   } else {
     loginData = {
       username: `${loginInput}`,
       password: `${password}`,
     };
-    console.log(loginData);
   }
 
   // send post request to backend
 
   const requestOptions = {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    mode: "cors",
+    redirect: "follow",
+    credentials: "include",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify(loginData),
   };
 

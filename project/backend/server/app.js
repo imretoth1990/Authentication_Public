@@ -3,13 +3,16 @@ import express from "express";
 const cors = require("cors");
 require("dotenv/config");
 import mongoose from "mongoose";
-
-// Import controllers
-import { rootController, userController, buttonController, confirmController, loginController } from "./controller";
-// import App from "../../frontend/react-login-signup/src/App";
+import cookieParser from "cookie-parser";
 
 // Init an Express App.
 const app = express();
+
+// Middleware: cookie-parser
+app.use(cookieParser());
+
+// Import controllers
+import { rootController, userController, buttonController, confirmController, loginController, resetController, passwordController } from "./controller";
 
 // Pass cors
 app.use(
@@ -32,6 +35,8 @@ app.use("/", buttonController);
 app.use("/", userController);
 app.use("/", confirmController);
 app.use("/", loginController);
+app.use("/", resetController);
+app.use("/api/password", passwordController);
 
 // Start Server here
 app.listen(port, () => {
