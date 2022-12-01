@@ -7,6 +7,7 @@ export default function Login() {
   const [password, setPassword] = useState(null);
   const [response, setResponse] = useState([]);
   const [warnMessage, setWarnMessage] = useState("");
+  const [renderDisplay, setRenderDisplay] = useState(false);
 
   const navigate = useNavigate();
 
@@ -18,49 +19,51 @@ export default function Login() {
 
     // send data to login client
     sendLoginData(loginInput, password, setResponse);
+    setRenderDisplay(true);
 
-    console.log(response);
+    // console.log("response 👉️", response);
+    // clear input values
+    // setLoginInput(null);
+    // setPassword(null);
+  }
 
-    /**
-     * if response OK, redirect to homepage (to buttons)
-     */
+  /**
+   * if response OK, redirect to homepage (to buttons)
+   */
 
+  if (renderDisplay) {
     if (response.includes("successful")) {
       navigate("/buttons");
     } else {
-      setLoginInput(null);
-      setPassword(null);
-      setWarnMessage("Incorrect username/email or password");
+      // setWarnMessage(response);
+      // setRenderResponse(false);
+      return <p className="text-danger text-center">{response}</p>;
     }
+  } else {
+    return (
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <h3>Sign In</h3>
 
-    // clear input values
-    setLoginInput(null);
-    setPassword(null);
+        <div className="mb-3">
+          <label>Username or Email</label>
+          <input type="username" className="form-control" placeholder="username or email" onChange={(e) => setLoginInput(e.target.value)} />
+        </div>
+        <div className="mb-3">
+          <label>Password</label>
+          <input type="password" className="form-control" placeholder="password" onChange={(e) => setPassword(e.target.value)} />
+        </div>
+        <div className="d-grid">
+          <button type="submit" className="btn btn-primary">
+            Login
+          </button>
+        </div>
+        <p className="forgot-password text-right">
+          Forgot <Link to="/reset">password?</Link>
+        </p>
+        <p className="not-registered text-right">
+          If your are not registered, please <Link to="/sign-up">sign up!</Link>
+        </p>
+      </form>
+    );
   }
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <h3>Sign In</h3>
-      <p className="text-danger text-center">{warnMessage}</p>
-      <div className="mb-3">
-        <label>Username or Email</label>
-        <input type="username" className="form-control" placeholder="username or email" onChange={(e) => setLoginInput(e.target.value)} />
-      </div>
-      <div className="mb-3">
-        <label>Password</label>
-        <input type="password" className="form-control" placeholder="password" onChange={(e) => setPassword(e.target.value)} />
-      </div>
-      <div className="d-grid">
-        <button type="submit" className="btn btn-primary">
-          Login
-        </button>
-      </div>
-      <p className="forgot-password text-right">
-        Forgot <Link to="/reset">password?</Link>
-      </p>
-      <p className="not-registered text-right">
-        If your are not registered, please <Link to="/sign-up">sign up!</Link>
-      </p>
-    </form>
-  );
 }
