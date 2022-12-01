@@ -1,6 +1,5 @@
 import express from "express";
 import { User } from "../database/models";
-import { Profile } from "../database/models";
 
 const crypto = require("crypto");
 
