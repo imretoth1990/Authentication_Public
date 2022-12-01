@@ -61,7 +61,7 @@ export default function Password() {
       <>
         <form onSubmit={handleConfirm}>
           <div>
-            <h3>Reset </h3>
+            <h3>Change </h3>
             <h3>your password.</h3>
             <br></br>
           </div>
