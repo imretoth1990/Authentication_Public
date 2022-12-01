@@ -1,6 +1,6 @@
 import express from "express";
 import { User } from "../../database/models";
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 require("dotenv/config");
 
 const confirmController = express.Router();

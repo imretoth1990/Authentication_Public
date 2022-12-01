@@ -5,7 +5,7 @@ require("dotenv/config");
 import mongoose from "mongoose";
 
 // Import controllers
-import { rootController, userController, buttonController, confirmController } from "./controller";
+import { rootController, userController, buttonController, confirmController, loginController } from "./controller";
 // import App from "../../frontend/react-login-signup/src/App";
 
 // Init an Express App.
@@ -31,6 +31,7 @@ app.use("/", rootController);
 app.use("/", buttonController);
 app.use("/", userController);
 app.use("/", confirmController);
+app.use("/", loginController);
 
 // Start Server here
 app.listen(port, () => {

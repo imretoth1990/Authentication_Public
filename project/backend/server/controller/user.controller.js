@@ -1,11 +1,12 @@
 import express from "express";
 import { User } from "../database/models";
+import { Profile } from "../database/models";
 
 const crypto = require("crypto");
 
 import sha256 from "sha256";
 
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 
 const userController = express.Router();
 
@@ -60,11 +61,5 @@ userController.post("/api/signup", (req, res) => {
       });
   }
 });
-
-/**
- * LOGIN
- */
-
-userController.post("/api/login", (req, res) => {});
 
 export default userController;
