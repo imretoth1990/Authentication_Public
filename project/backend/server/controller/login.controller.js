@@ -3,7 +3,8 @@ import express from "express";
 const loginController = express.Router();
 
 loginController.post("/api/login", async (req, res) => {
-  console.log("api/login working");
+  //   const { input, password } = req.body;
+  console.log("req.body 👉️", req.body);
   res.send({ message: "api/login working" });
 
   // const { userInput, password } = req.body;
