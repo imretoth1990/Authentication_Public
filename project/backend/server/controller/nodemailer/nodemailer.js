@@ -22,3 +22,26 @@ export async function sendConfirmationEmail(email, code, username) {
   console.log("Message sent: %s", info.messageId);
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 }
+
+export async function sendPasswordResetEmail(email, code, username) {
+  const link = `http://localhost:3000/password?code=${code}&user=${username}`;
+
+  const transporter = nodemailer.createTransport({
+    host: "smtp.ethereal.email",
+    port: 587,
+    auth: {
+      user: "emmie.larkin36@ethereal.email",
+      pass: "kFUXdRaZNNYzn8JB7m",
+    },
+  });
+
+  const info = await transporter.sendMail({
+    from: "emmie.larkin36@ethereal.email",
+    to: email,
+    subject: "Confirm password reset request",
+    html: `<h2>Hello ${username}, </h2> <br /> <p>Click the link below to confirm your request to change your password.</p> <br /> <a href=${link}>Link</a> <br /> <p>The link expires in 5 minutes.</p> <p>Regards, <br /> The ReactorS</p>`,
+  });
+
+  console.log("Message sent: %s", info.messageId);
+  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+}

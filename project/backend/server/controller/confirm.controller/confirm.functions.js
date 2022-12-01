@@ -4,7 +4,7 @@ import { Profile } from "../../database/models";
 export async function moveUserToProfileDB(userObject) {
   try {
     const profileData = {
-      userId: userObject[0].userId,
+      userId: userObject[0].confirm.userId,
       username: userObject[0].username,
       email: userObject[0].email,
       hashedPassword: userObject[0].hashedPassword,

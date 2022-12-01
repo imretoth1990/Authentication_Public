@@ -1,7 +1,8 @@
 import express from "express";
 import Reset from "../../database/models/reset.model";
 import { Profile } from "../../database/models";
-
+import { sendPasswordResetEmail } from "../nodemailer/nodemailer";
+import jwt from "jsonwebtoken";
 // import jwt from "jsonwebtoken";
 
 const resetController = express.Router();
@@ -15,26 +16,43 @@ resetController.post("/api/reset", async (req, res) => {
 
   const profile = profileData[0];
 
+  const userId = profile.userId;
+  const userEmail = profile.email;
+  const userName = profile.username;
+
   console.log("profileData", profile.email);
-  console.log("profileUsername", profile._id);
+  console.log("profileUsername", profile.userId);
 
   if (!profileData) {
     res.status(404).send([{ message: "Invalid email adress" }]);
   } else {
-    //   const resetData = {
-    //     date: new Date().toString(),
-    //     secureCode: generateToken(this.userId),
-    //     userId: { type: String, required: true },
-    //     email: { type: String, required: true },
-    //   };
-    //   function generateToken(userId) {
-    //     return jwt.sign({ userId }, process.env.JWT_SECRET, {
-    //       expiresIn: "5m",
-    //     });
-    //   }
-  }
+    function generateToken(userId) {
+      return jwt.sign({ userId }, process.env.JWT_SECRET, {
+        expiresIn: "5m",
+      });
+    }
 
-  res.send([{ message: "Success" }]);
+    const resetData = {
+      date: new Date().toString(),
+      username: userName,
+      userId: userId,
+      secureCode: generateToken(this.userId),
+      email: userEmail,
+    };
+
+    const newReset = new Reset(resetData);
+
+    newReset
+      .save()
+      .then(() => {
+        res.status(200).send([{ message: "Successful request for password reset" }]);
+        sendPasswordResetEmail(newReset.email, newReset.secureCode, newReset.username);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(400).send([{ message: `Unable to save: ${err.message}` }]);
+      });
+  }
 });
 
 export default resetController;

@@ -6,6 +6,7 @@ import SignUp from "./components/signup/signup.component";
 import Reset from "./components/reset/reset.component";
 import Buttons from "./components/buttons/buttons.component";
 import Confirm from "./components/confirm/confirm.component";
+import Password from "./components/password/password.component";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
               <Route path="/reset" element={<Reset />} />
               <Route path="/buttons" element={<Buttons />} />
               <Route path="/confirm/" element={<Confirm />} />
+              <Route path="/password" element={<Password />} />
             </Routes>
           </div>
         </div>
