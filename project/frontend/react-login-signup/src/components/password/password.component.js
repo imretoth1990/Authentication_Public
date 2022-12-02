@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useSearchParams /* useNavigate */ } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import { sendDataToResetPassword } from "../../client/password.client";
 
 export default function Password() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [response, setResponse] = useState("");
+  const [response, setResponse] = useState([]);
   const [renderResponse, setRenderResponse] = useState(false);
 
   const [newPassword, setNewPassword] = useState(null);
@@ -15,9 +15,13 @@ export default function Password() {
   function handleConfirm() {
     const code = searchParams.get("code");
     const username = searchParams.get("user");
+    console.log("code", code);
+    console.log("username", username);
+    console.log("newPassword", newPassword);
 
     sendDataToResetPassword(code, username, newPassword, setResponse);
     setRenderResponse(true);
+    // console.log("frontendresponse", response);
   }
 
   //   if (renderResponse) {
@@ -59,22 +63,20 @@ export default function Password() {
   } else {
     return (
       <>
-        <form onSubmit={handleConfirm}>
-          <div>
-            <h3>Change </h3>
-            <h3>your password.</h3>
-            <br></br>
-          </div>
-          <div className="mb-3">
-            <label>New Password</label>
-            <input type="password" className="form-control" placeholder="Enter new password" onChange={(e) => setNewPassword(e.target.value)} />
-          </div>
-          <div className="d-grid">
-            <button type="button" className="btn btn-primary">
-              Reset
-            </button>
-          </div>
-        </form>
+        <div>
+          <h3>Change </h3>
+          <h3>your password.</h3>
+          <br></br>
+        </div>
+        <div className="mb-3">
+          <label>New Password</label>
+          <input type="password" className="form-control" placeholder="Enter new password" onChange={(e) => setNewPassword(e.target.value)} />
+        </div>
+        <div className="d-grid">
+          <button type="button" className="btn btn-primary" onClick={handleConfirm}>
+            Reset
+          </button>
+        </div>
       </>
     );
   }

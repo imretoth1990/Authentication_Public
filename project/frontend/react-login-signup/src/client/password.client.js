@@ -1,4 +1,6 @@
 export async function sendDataToResetPassword(secureCode, username, newPassword, setResponse) {
+  const messageToSend = [];
+
   const dataWithNewPassword = {
     secureCode: `${secureCode}`,
     username: `${username}`,
@@ -13,6 +15,8 @@ export async function sendDataToResetPassword(secureCode, username, newPassword,
 
   const res = await fetch("http://localhost:8080/api/password", requestOptions);
   const response = await res.json();
-
-  await setResponse(response.message);
+  console.log(response);
+  response.forEach((res) => messageToSend.push(res.message));
+  console.log(messageToSend[0]);
+  await setResponse(messageToSend[0]);
 }

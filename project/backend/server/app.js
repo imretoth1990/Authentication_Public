@@ -36,7 +36,7 @@ app.use("/", userController);
 app.use("/", confirmController);
 app.use("/", loginController);
 app.use("/", resetController);
-app.use("/api/password", passwordController);
+app.use("/", passwordController);
 
 // Start Server here
 app.listen(port, () => {
