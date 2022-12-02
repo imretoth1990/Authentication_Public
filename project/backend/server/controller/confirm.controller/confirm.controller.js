@@ -37,7 +37,6 @@ confirmController.post(
         if (result.length === 0) {
           res.status(400).send({ message: "No user found with this verification link" });
         } else {
-          console.log("userObject", result);
           moveUserToProfileDB(result).then((isSuccess) => {
             if (isSuccess) {
               res.status(200).send({

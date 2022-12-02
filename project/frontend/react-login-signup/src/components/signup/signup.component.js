@@ -43,8 +43,6 @@ export default function SignUp() {
     } else if (inputName === "confirmPassword") {
       setConfirmPassword(inputValue);
     }
-    console.log(findUsername);
-    console.log(findEmail);
   }
 
   function handleSubmit(e) {

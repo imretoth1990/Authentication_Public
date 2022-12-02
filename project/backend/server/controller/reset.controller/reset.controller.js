@@ -9,19 +9,18 @@ const resetController = express.Router();
 
 resetController.post("/api/reset", async (req, res) => {
   const email = req.body.email;
-  console.log("email hello", email);
 
   //   find profile by email
   const profileData = await Profile.where("email").equals(`${email}`);
+
+  // Guard clause
+  if (profileData.length === 0) return res.status(400).json([{ message: "Email not found" }]);
 
   const profile = profileData[0];
 
   const userId = profile.userId;
   const userEmail = profile.email;
   const userName = profile.username;
-
-  console.log("profileData", profile.email);
-  console.log("profileUsername", profile.userId);
 
   if (!profileData) {
     res.status(404).send([{ message: "Invalid email adress" }]);

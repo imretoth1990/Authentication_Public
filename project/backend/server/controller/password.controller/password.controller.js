@@ -7,7 +7,6 @@ const passwordController = express.Router();
 passwordController.post("/api/password", (req, res) => {
   const { secureCode, username, newPassword } = req.body;
   // find document in profile
-  console.log(req.body);
 
   Profile.find({ username: username }, (err, result) => {
     if (err) {
@@ -21,13 +20,17 @@ passwordController.post("/api/password", (req, res) => {
 
         const newHashedPassword = sha256(newPassword);
 
-        const filter = { username: `${result.username}` };
+        const filter = { username: `${result[0].username}` };
         const update = { hashedPassword: `${newHashedPassword}` };
         const opts = { new: true };
-        Profile.findOneAndUpdate(filter, update, opts);
 
-        console.log("userObject", result);
-        res.status(200).send([{ message: "New password successfully saved" }]);
+        Profile.findOneAndUpdate(filter, update, opts, (err, doc) => {
+          if (err) {
+            res.status(400).send([{ message: "Unable to update password" }]);
+          } else {
+            res.status(200).send([{ message: "Password updated successfully" }]);
+          }
+        });
       }
     }
   });

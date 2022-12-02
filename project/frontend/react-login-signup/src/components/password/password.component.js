@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 
 import { sendDataToResetPassword } from "../../client/password.client";
 
@@ -15,13 +15,9 @@ export default function Password() {
   function handleConfirm() {
     const code = searchParams.get("code");
     const username = searchParams.get("user");
-    console.log("code", code);
-    console.log("username", username);
-    console.log("newPassword", newPassword);
 
     sendDataToResetPassword(code, username, newPassword, setResponse);
     setRenderResponse(true);
-    // console.log("frontendresponse", response);
   }
 
   //   if (renderResponse) {
@@ -54,9 +50,12 @@ export default function Password() {
           <div className="card text-center m-3">
             <h3 className="card-header text-success">Hurray!</h3>
           </div>
-          <div className={"input-green"}>
+          <div className="input-green text-center">
             <p>{response || "Waiting for response..."}</p>
           </div>
+          <p className="text-center">
+            <Link to={"/"}>Login</Link>
+          </p>
         </>
       );
     }

@@ -17,7 +17,6 @@ export default function Login() {
     // send data to login client
     sendLoginData(loginInput.current.value, password.current.value, setResponse);
     setRenderDisplay(true);
-    // console.log(response);
   }
 
   /**

@@ -12,7 +12,6 @@ export function findUsernames(inputValue, userData, setFindUsername) {
   } else {
     setFindUsername("notFound");
   }
-  console.log(userNames);
 }
 
 export function findEmails(inputValue, userData, setFindEmail) {

@@ -24,15 +24,12 @@ export async function sendResetData(email, setResponse) {
     };
 
     const res = await fetch("http://localhost:8080/api/reset", requestOptions);
-    // const response = await res.json();
-
-    // console.log(response);
+    const response = await res.json();
 
     // await response.forEach((res) => responseData.push(res.message));
 
-    // await setResponse(responseData);
-    // } else {
-    //   setResponse([{ message: "Invalid email adress" }]);
-    // }
+    await setResponse(response);
+  } else {
+    setResponse([{ message: "Invalid email address" }]);
   }
 }

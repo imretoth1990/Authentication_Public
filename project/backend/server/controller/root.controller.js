@@ -22,7 +22,6 @@ rootController.get("/", (req, res) => {
           res.status(400).json({ message: err.message });
         } else {
           allUsers.push(allverified);
-          console.log(allUsers);
           res.status(200).json({ data: allUsers });
         }
       });
