@@ -9,12 +9,23 @@ const rootController = express.Router();
  */
 
 rootController.get("/", (req, res) => {
-  User.find({}, (err, result) => {
+  const allUsers = [];
+  User.find({}, (err, allpending) => {
     if (err) {
       console.error(err);
       res.status(400).json({ message: err.message });
     } else {
-      res.status(200).json({ data: result });
+      allUsers.push(allpending);
+      Profile.find({}, (err, allverified) => {
+        if (err) {
+          console.error(err);
+          res.status(400).json({ message: err.message });
+        } else {
+          allUsers.push(allverified);
+          console.log(allUsers);
+          res.status(200).json({ data: allUsers });
+        }
+      });
     }
   });
 });

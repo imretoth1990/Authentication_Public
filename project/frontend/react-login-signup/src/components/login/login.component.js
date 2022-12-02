@@ -17,6 +17,7 @@ export default function Login() {
     // send data to login client
     sendLoginData(loginInput.current.value, password.current.value, setResponse);
     setRenderDisplay(true);
+    // console.log(response);
   }
 
   /**
@@ -27,7 +28,20 @@ export default function Login() {
     if (response.includes("successful")) {
       navigate("/buttons");
     } else {
-      return <p className="text-danger text-center">{response}</p>;
+      return (
+        <>
+          <div className="card text-center">
+            <h5 className="card-header text-danger">Ooops.</h5>
+            <div className="card-body">
+              Message: <br></br>
+              <p>{response || "Invalid username/email or password."}</p>
+            </div>
+          </div>
+          <p className="input-green">
+            Go back to <a href="./buttons"> sign in.</a>
+          </p>
+        </>
+      );
     }
   } else {
     return (

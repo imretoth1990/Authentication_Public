@@ -43,7 +43,7 @@ export default function Password() {
           <div className="card text-center m-3">
             <h3 className="card-header text-danger">Oooops. Something went wrong!</h3>
           </div>
-          <div /* className={"input-red"} */>
+          <div className={"input-red"}>
             <p>{response || "Waiting for response..."}</p>
           </div>
         </>
@@ -54,7 +54,7 @@ export default function Password() {
           <div className="card text-center m-3">
             <h3 className="card-header text-success">Hurray!</h3>
           </div>
-          <div /* className={"input-green"} */>
+          <div className={"input-green"}>
             <p>{response || "Waiting for response..."}</p>
           </div>
         </>

@@ -1,6 +1,9 @@
 export function findUsernames(inputValue, userData, setFindUsername) {
   const userNames = [];
-  userData.forEach((res) => {
+  userData[0].forEach((res) => {
+    userNames.push(res.username);
+  });
+  userData[1].forEach((res) => {
     userNames.push(res.username);
   });
 
@@ -9,11 +12,15 @@ export function findUsernames(inputValue, userData, setFindUsername) {
   } else {
     setFindUsername("notFound");
   }
+  console.log(userNames);
 }
 
 export function findEmails(inputValue, userData, setFindEmail) {
   const emailAdresses = [];
-  userData.forEach((res) => {
+  userData[0].forEach((res) => {
+    emailAdresses.push(res.email);
+  });
+  userData[1].forEach((res) => {
     emailAdresses.push(res.email);
   });
 
