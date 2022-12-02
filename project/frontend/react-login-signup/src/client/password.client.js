@@ -1,22 +1,18 @@
 export async function sendDataToResetPassword(secureCode, username, newPassword, setResponse) {
-  //   console.log("secureCode 👉", secureCode);
-  //   console.log("username 👉", username);
-  //   console.log("newPassword 👉", newPassword);
+  const dataWithNewPassword = {
+    secureCode: `${secureCode}`,
+    username: `${username}`,
+    newPassword: `${newPassword}`,
+  };
 
-  setResponse([{ message: "Success" }]);
-  // const confirmData = {
-  //   secureCode: `${secureCode}`,
-  //   username: `${username}`,
-  // }
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(dataWithNewPassword),
+  };
 
-  // const requestOptions = {
-  //   method: "POST",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify(confirmData),
-  // }
+  const res = await fetch("http://localhost:8080/api/password", requestOptions);
+  const response = await res.json();
 
-  // const res = await fetch("http://localhost:8080/api/confirm", requestOptions)
-  // const data = await res.json()
-
-  // await setResponse(data.message)
+  await setResponse(response.message);
 }
