@@ -7,5 +7,6 @@ import rootController from "./root.controller";
 import loginController from "./login.controller/login.controller";
 import resetController from "./reset.controller/reset.controller";
 import passwordController from "./password.controller/password.controller";
+import logoutController from "./logout.controller/logout.controller";
 
-export { rootController, userController, buttonController, confirmController, loginController, resetController, passwordController };
+export { rootController, userController, buttonController, confirmController, loginController, resetController, passwordController, logoutController };

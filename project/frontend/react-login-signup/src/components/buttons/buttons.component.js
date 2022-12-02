@@ -1,15 +1,23 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import pubi from "../../images/pubi.png";
 import { getButtonData } from "../../client/buttons.client";
+import { logoutUser } from "../../client/logout.client";
 
 export default function Buttons() {
   const [data, setData] = useState("");
   const [buttonClicked, setButtonClicked] = useState("");
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     getButtonData(setData, buttonClicked);
   }, [buttonClicked]);
+
+  const handleLogout = () => {
+    logoutUser();
+    navigate("/");
+  };
 
   const displayMessage = (
     <>
@@ -45,7 +53,9 @@ export default function Buttons() {
         </button>
       </div>
       <p className="default-text">
-        Use this link in order to <Link to="/">log out</Link>.
+        <button type="button" className="btn btn-secondary btn-sm" onClick={handleLogout}>
+          Log out
+        </button>
       </p>
     </form>
   );

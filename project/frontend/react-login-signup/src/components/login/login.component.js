@@ -38,7 +38,7 @@ export default function Login() {
             </div>
           </div>
           <p className="input-green">
-            Go back to <a href="./buttons"> sign in.</a>
+            Go back to <a href="./"> sign in.</a>
           </p>
         </>
       );

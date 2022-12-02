@@ -12,7 +12,7 @@ const app = express();
 app.use(cookieParser());
 
 // Import controllers
-import { rootController, userController, buttonController, confirmController, loginController, resetController, passwordController } from "./controller";
+import { rootController, userController, buttonController, confirmController, loginController, resetController, passwordController, logoutController } from "./controller";
 
 // Pass cors
 app.use(
@@ -36,6 +36,7 @@ app.use("/", buttonController);
 app.use("/", userController);
 app.use("/", confirmController);
 app.use("/", loginController);
+app.use("/", logoutController);
 app.use("/", resetController);
 app.use("/", passwordController);
 
