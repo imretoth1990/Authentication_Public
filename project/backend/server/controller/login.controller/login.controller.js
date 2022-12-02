@@ -35,7 +35,7 @@ loginController.post("/api/login", async (req, res) => {
       id: user._id,
     };
 
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "10s" });
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "15s" });
 
     if (passwordIsValid) {
       res

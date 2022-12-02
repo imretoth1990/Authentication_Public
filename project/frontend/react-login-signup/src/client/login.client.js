@@ -39,6 +39,7 @@ export async function sendLoginData(loginInput, password, setResponse) {
 
   const requestOptions = {
     method: "POST",
+    credentials: "include",
     headers: { "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify(loginData),
   };
